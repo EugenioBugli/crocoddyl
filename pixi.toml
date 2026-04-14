@@ -1,0 +1,58 @@
+[workspace]
+name = "crocoddyl"
+channels = [
+    "https://prefix.dev/pixi-build-backends",
+    "conda-forge",
+]
+platforms = ["linux-64", "linux-aarch64", "osx-64", "osx-arm64"]
+preview = ["pixi-build"]
+
+[package]
+name = "crocoddyl"
+version = "3.2.0"
+description = "Contact RObot COntrol by Differential DYnamic programming Library"
+
+[package.build.backend]
+name = "pixi-build-cmake"
+version = "*"
+
+[package.host-dependencies]
+cmake = ">=3.22"
+ninja = "*"
+pkg-config = "*"
+cxx-compiler = "*"
+boost = ">=1.65"
+eigenpy = ">=3.1.0"
+pinocchio = ">=3.1.0"
+python = ">=3.8"
+numpy = "*"
+
+[package.run-dependencies]
+boost = ">=1.65"
+eigenpy = ">=3.1.0"
+pinocchio = ">=3.1.0"
+python = ">=3.8"
+numpy = "*"
+
+# Dev environment (for working on crocoddyl itself)
+[dependencies]
+cmake = ">=3.22"
+ninja = "*"
+pkg-config = "*"
+cxx-compiler = "*"
+boost = ">=1.65"
+eigenpy = ">=3.1.0"
+pinocchio = ">=3.1.0"
+python = ">=3.8"
+numpy = "*"
+ipopt = "*"
+example-robot-data = "*"
+scipy = "*"
+
+[tasks]
+configure = { cmd = "cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX -B build -S ." }
+build = { cmd = "cmake --build build --parallel", depends-on = ["configure"] }
+install = { cmd = "cmake --install build", depends-on = ["build"] }
+rebuild = { cmd = "cmake --build build --parallel" }
+test = { cmd = "ctest --test-dir build --output-on-failure -j$(nproc)", depends-on = ["build"] }
+clean = { cmd = "rm -rf build" }
