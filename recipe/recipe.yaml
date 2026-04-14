@@ -1,0 +1,38 @@
+schema_version: 1
+
+package:
+  name: crocoddyl
+  version: "3.2.0"
+
+source:
+  path: ..
+
+build:
+  script: build.sh
+
+requirements:
+  build:
+    - cmake >=3.22
+    - ninja
+    - pkg-config
+    - ${{ compiler("cxx") }}
+  host:
+    - boost >=1.65
+    - eigen >=3.4,<4
+    - eigenpy >=3.1.0
+    - pinocchio >=3.1.0
+    - python
+    - numpy
+  run:
+    - boost >=1.65
+    - eigenpy >=3.1.0
+    - pinocchio >=3.1.0
+    - python
+    - numpy
+    # intentionally no urdfdom / casadi / tinyxml2 — crocoddyl does not
+    # link against them directly; pinocchio handles urdf parsing internally
+
+about:
+  homepage: https://github.com/loco-3d/crocoddyl
+  license: BSD-3-Clause
+  summary: Contact RObot COntrol by Differential DYnamic programming Library
