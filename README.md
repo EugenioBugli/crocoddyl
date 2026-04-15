@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="./doc/images/crocoddyl_logo.png" width="800" alt="Crocoddyl Logo" align="center"/>
+  <img src="./doc/images/crocoddyl_logo.png" width="850" alt="Crocoddyl Logo" align="center"/>
 </p>
 
 <p align="center">
