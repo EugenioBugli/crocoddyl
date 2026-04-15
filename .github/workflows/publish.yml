@@ -24,11 +24,10 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Install rattler-build
-        uses: prefix-dev/rattler-build-action@v0.2.24
-
       - name: Build package
-        run: rattler-build build --recipe recipe/recipe.yaml
+        uses: prefix-dev/rattler-build-action@v0.2.24
+        with:
+          recipe-path: recipe/recipe.yaml
 
       - name: Upload to prefix.dev
         run: |
