@@ -11,6 +11,7 @@ jobs:
     name: Build (${{ matrix.target.platform }})
     runs-on: ${{ matrix.target.runner }}
     strategy:
+      fail-fast: false
       matrix:
         target:
           - { platform: linux-64,    runner: ubuntu-24.04      }
