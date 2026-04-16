@@ -30,6 +30,7 @@ jobs:
         with:
           recipe-path: recipe/recipe.yaml
           rattler-build-version: latest
+          build-args: --channel https://prefix.dev/spqr --channel conda-forge
 
       - name: Upload to prefix.dev
         run: |
