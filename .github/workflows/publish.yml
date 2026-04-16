@@ -29,6 +29,7 @@ jobs:
         uses: prefix-dev/rattler-build-action@v0.2.24
         with:
           recipe-path: recipe/recipe.yaml
+          rattler-build-version: latest
 
       - name: Upload to prefix.dev
         run: |
